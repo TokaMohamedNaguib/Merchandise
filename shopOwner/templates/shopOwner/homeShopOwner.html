@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+    -Your Home page
+{% endblock %}
+
+{% block navbar %}
+    <label style="padding-right: 20px" id="name" > User</label>
+{% endblock %}
+
+{% block content %}
+     <div class="container">
+     <div class="jumbotron">
+            <h3>You can view the response to all your requests through this page! </h3>
+          </div>
+    <div class="container"> <a href="askForRequest/{{ user.id }}"><button  style="padding: 20px" type="button" class="btn btn-success" name="newRequest" > New request</button> </a></div>
+    <div style="padding-top: 20px" class="container">
+    <table  class="table">
+        <thead>
+        <th> Name </th>
+        <th> Category </th>
+        <th> Number of items </th>
+        <th> Price </th>
+        <th> Description </th>
+        <th> Status </th>
+
+        </thead>
+
+        <tbody>
+
+    {% for request in requests %}
+    <tr>
+        <td>{{ request.name }}</td>
+        <td>{{ request.category }}</td>
+        <td>{{ request.numberOfItems }}</td>
+        <td>{{ request.price }}</td>
+        <td>{{ request.desc }}</td>
+        <td>{{ request.status }}</td>
+
+    </tr>
+    {% endfor %}
+         </tbody>
+    </table>
+    </div>
+
+{% endblock %}

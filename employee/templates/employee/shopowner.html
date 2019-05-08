@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+    -Product page
+{% endblock %}
+{% block content %}
+   <div class="masthead container">
+        <nav>
+          <ul class="nav nav-justified ">
+         <li class="active"><a href="/employee">Home</a></li>
+            <li ><a href="/employee/add">Shop owner</a></li>
+            <li><a href="/employee/edit">Purchaser</a></li>
+
+          </ul>
+        </nav>
+      </div>
+    <div class="container">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Hello to our faviroute employee!</h1>
+            <p>This page will always help you to preform your duties with high quality..</p>
+          </div>
+
+          <div class="row">
+          {% for product in products %}
+        <form action="/employee/{{ product.id }}/add" method="post" >
+            <div class="col-xs-6 col-lg-4">
+              <h2>{{  product.name  }}</h2>
+                <h3>{{ product.price }}</h3>
+                <p>{{ product.category }}</p>
+                <p id="desc">{{ product.desc }}</p>
+                <a href="{{ product.id }}/add"> <button type="button" class="btn btn-success">ADD</button></a>
+            </div><!--/.col-xs-6.col-lg-4-->
+        </form>
+          {% endfor %}
+          </div>
+        </div>
+    {% endblock %}

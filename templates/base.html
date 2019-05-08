@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<a id="myTitle"> <title > Merchandise {% block title %}{% endblock %}</title></a>
+{% block cssFile %}{% endblock %}
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'rate.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:">
+
+<div  id="navbar" class="navbar" style="background-color: #546e7a">
+    <div class="navbar-header">
+    <a id="logo" style="color: mintcream; font-family:Arial  " class="navbar-brand" href="http://127.0.0.1:8000"><span class="align-left" ><img id="image" src= "{% static 'images/store.png' %}"> </span>
+MERCHANDISE
+    </a>
+    </div>
+
+
+{% block nav %}
+     {% if user.is_authenticated %}
+         <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#about" style="color: mintcream">About</a></li>
+            <li><a href="#contact" style="color: mintcream">Contact</a></li>
+          </ul>
+
+                        <form class="navbar-form navbar-right">
+
+                    <a class="btn btn-success" href="http://127.0.0.1:8000/purchaser/logout" role="button">Log out </a>            </form>
+              <form action="search" class="navbar-form navbar-right" method="post">
+                  {% csrf_token %}
+                  <input type="text"  name="myText_Box" id="myText_Box" class="form-control"  placeholder="Search for products.." title="Type in a products">
+              </form>
+         </div>
+
+     {% else %}
+             <ul class="nav navbar-nav navbar-right" style="padding-right: 30px">
+          <li><a href="http://127.0.0.1:8000/purchaser/login" class="btn btn-success" style="color: mintcream"> Login </a></li>
+
+{% endif %}
+
+        </div>
+{% endblock %}
+
+{% block content %}{% endblock %}
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+ <nav class="navbar navbar-fixed-bottom" style="background-color: #546e7a">
+      <div class="container">
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+{% if  user.groups.all.0.name == "employees"  %}
+                <li class="active"><a href="http://127.0.0.1:8000/employee/"style="color: mintcream">Employee</a></li>
+{% endif %}
+{% if  user.groups.all.0.name == "analysts"  %}
+                  <li><a href="http://127.0.0.1:8000/analyst" style="color: mintcream">Analyst</a></li>
+{% endif %}
+
+          {% if  user.groups.all.0.name == "shopOwners"  %}
+                  <li><a href="http://127.0.0.1:8000/shopOwner/{{ user.id }}" style="color: mintcream">{{ user.username }}</a></li>
+{% endif %}
+          {% if  user.groups.all.0.name == "purchasers"  %}
+                  <li><a href="http://127.0.0.1:8000/purchaser/" style="color: mintcream">{{ user.username }}</a></li>
+{% endif %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+{% if  user.groups.all.0.name == "purchasers"  %}
+            <li><a href="http://127.0.0.1:8000/cartpage/{{ user.id }}"><span class="align-left" ><img width="25" height="25" src= "{% static 'images/cart1.png' %}"> </span></a></li>
+              {% endif %}
+            <li  class="active"><a href="#myTitle" style="color: mintcream">Top page <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

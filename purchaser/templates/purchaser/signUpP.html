@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}-Sign up{% endblock %}
+{% block cssFile %}
+    <style>
+#input {
+    border-radius: 5px;
+    padding: 20px;
+}
+#submit
+{
+    margin-top: 20px;
+}
+    #form
+    {
+        background-color: mintcream;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form method="post" >
+        {% csrf_token %}
+ <div id="input" class="input-group">
+    <label >Email address:</label>
+    <input type="text" placeholder="E-mail" class="form-control" id="" name="email_address">
+  </div>
+  <div id="input" class="input-group">
+    <label>User name</label>
+    <input type="text" placeholder="user name" class="form-control" id="" name="username">
+  </div>
+          <div id="input" class="input-group">
+    <label >ID Number</label>
+    <input type="text" placeholder="phone number" class="form-control" id="" name="number">
+  </div>
+          <div id="input" class="input-group">
+    <label >Address</label>
+    <input type="text" placeholder="phone number" class="form-control" id="" name="address">
+  </div>
+        <div id="input" class="input-group">
+    <label >Password1:</label>
+    <input type="text" placeholder="phone number" class="form-control" id="" name="password1">
+  </div>
+         <div id="input" class="input-group">
+    <label >Password2:</label>
+    <input type="text" placeholder="phone number" class="form-control" id="" name="password2">
+  </div>
+    <button type="submit" class="btn btn-default btn-success" id="submit">Sign up</button>
+    </form>
+</div>
+{% endblock %}

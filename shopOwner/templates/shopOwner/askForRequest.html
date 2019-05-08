@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}- Send your request{% endblock %}
+
+
+{% block content%}
+    <div class="container">
+    <label style="padding:20px">  New form</label> <br>
+         <label style="padding:20px">   Enter number of products</label>
+        <input type="text" placeholder="Number of products"  id="numberOfProducts">
+    <table id="table" class="table">
+         <thead>
+        <th> Name </th>
+        <th> Category </th>
+        <th> Number of items </th>
+        <th> Price </th>
+        <th> Description </th>
+
+        </thead>
+        <tbody>
+       <form action="/shopOwner/askForRequest/" method="post">
+           {% csrf_token %}
+        <tr>
+            <td> <input type="text" placeholder="Name" name="name"> </td>
+        <td> <input type="text" placeholder="Category" name="category"> </td>
+        <td> <input type="text" placeholder="Number of items" name="numberOfItems"> </td>
+        <td> <input type="text" placeholder="Price" name="price"> </td>
+        <td> <input type="text" placeholder="Description" name="desc"> </td>
+            <td> <input type="text" placeholder="Description" name="desc"> </td>
+
+        </tr>
+        </form>
+        </tbody>
+    </table>
+    <input type="submit" value="Submit">
+
+    </div>
+
+{% endblock %}

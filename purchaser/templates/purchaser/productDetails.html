@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% block title %}
+    -Product details
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+    <div class="col-md-4">
+        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="{{ product.image.url }}" data-holder-rendered="true">
+    </div>
+        <form action="http://127.0.0.1:8000/purchaser/add/{{ user.id }}/{{ product.id }}" method="post">
+            {% csrf_token %}
+
+            <div class="col-md-8">
+                 <h5>Name</h5>
+                <h2>{{ product.name }}</h2>
+                 <h5>{{ product.desc }}</h5>
+                <h4>Price</h4>
+                <h3>{{ product.price }}</h3>
+                 <h5>Number of items</h5>
+                  <h2>{{ product.numberOfItems }}</h2>
+         </div>
+    </div>
+
+     <input type="submit" value="Add to cart" class="btn btn-primary" onclick="return confirm('Are you sure you want to add {{ product.name }}')"> </input>
+         </form>
+       <br> <br>
+
+          {% if user.is_authenticated %}
+        <form action="/purchaser/comment/{{ product.id }} " method="post">
+            {% csrf_token %}
+
+            <textarea rows="5" cols="50" name="comment" placeholder="Enter your comment here .."></textarea><br>
+             <input type="submit" name="submit" value="Add comment" class="btn btn-primary"> <span>
+
+
+
+        </span>
+        </form>
+
+
+    </div>
+<div class="container">
+              <form method="post"  action="http://127.0.0.1:8000/purchaser/rating/{{ product.id }}">
+              {% csrf_token %}
+              <div class="star-rating">
+			<input id="star-5" type="radio" name="rating" value="5" >
+			<label for="star-5" title="5 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-4" type="radio" name="rating" value="4">
+			<label for="star-4" title="4 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-3" type="radio" name="rating" value="3">
+			<label for="star-3" title="3 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-2" type="radio" name="rating" value="2">
+			<label for="star-2" title="2 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-1" type="radio" name="rating" value="1">
+			<label for="star-1" title="1 star">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+		     </div>
+               <div><input type="submit" value="Done" class="btn btn-success">
+              </div>
+
+        </form>
+    </div>
+    </div>
+    {% endif %}
+        <div class="container">
+
+    <h3>Comments</h3>
+    {% for mycomment in comments %}
+        <p>
+            {{mycomment.comment   }}
+        </p>
+    {% endfor %}
+</div>
+    <div class="container">
+     {% if  product.is_favorite == 5%}
+         <div class="star-rating">
+			<input id="star-5" type="radio" name="rate" value="5" checked >
+			<label for="star-5" title="5 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-4" type="radio" name="rate" value="4">
+			<label for="star-4" title="4 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-3" type="radio" name="rate" value="3" checked>
+			<label for="star-3" title="3 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-2" type="radio" name="rate" value="2">
+			<label for="star-2" title="2 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-1" type="radio" name="rate" value="1">
+			<label for="star-1" title="1 star">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+
+		</div>
+
+{% elif  product.is_favorite == 4 %}
+         <div class="star-rating">
+			<input id="star-5" type="radio" name="rate" value="5" >
+			<label for="star-5" title="5 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-4" type="radio" name="rate" value="4" checked>
+			<label for="star-4" title="4 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-3" type="radio" name="rate" value="3" checked>
+			<label for="star-3" title="3 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-2" type="radio" name="rate" value="2">
+			<label for="star-2" title="2 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-1" type="radio" name="rate" value="1">
+			<label for="star-1" title="1 star">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+
+		</div>
+        {% elif  product.is_favorite == 3 %}
+         <div class="star-rating">
+			<input id="star-5" type="radio" name="rate" value="5" >
+			<label for="star-5" title="5 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-4" type="radio" name="rate" value="4">
+			<label for="star-4" title="4 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-3" type="radio" name="rate" value="3" checked>
+			<label for="star-3" title="3 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-2" type="radio" name="rate" value="2">
+			<label for="star-2" title="2 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-1" type="radio" name="rate" value="1">
+			<label for="star-1" title="1 star">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+
+		</div>
+        {% elif  product.is_favorite == 2 %}
+         <div class="star-rating">
+			<input id="star-5" type="radio" name="rate" value="5" >
+			<label for="star-5" title="5 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-4" type="radio" name="rate" value="4">
+			<label for="star-4" title="4 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-3" type="radio" name="rate" value="3" checked>
+			<label for="star-3" title="3 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-2" type="radio" name="rate" value="2" checked>
+			<label for="star-2" title="2 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-1" type="radio" name="rate" value="1">
+			<label for="star-1" title="1 star">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+
+		</div>
+        {% elif  product.is_favorite == 1 %}
+         <div class="star-rating">
+			<input id="star-5" type="radio" name="rate" value="5" >
+			<label for="star-5" title="5 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-4" type="radio" name="rate" value="4">
+			<label for="star-4" title="4 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-3" type="radio" name="rate" value="3" >
+			<label for="star-3" title="3 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-2" type="radio" name="rate" value="2">
+			<label for="star-2" title="2 stars">
+					<i class="active fa fa-star" aria-hidden="true"></i>
+			</label>
+			<input id="star-1" type="radio" name="rate" value="1" checked>
+			<label for="star-1" title="1 star">
+					<i class="active fa fa-star" aria-hidden="true" ></i>
+			</label>
+
+		</div>
+</div>
+    {%  endif %}
+{% endblock %}

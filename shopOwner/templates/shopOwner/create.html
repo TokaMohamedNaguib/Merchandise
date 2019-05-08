@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+- Ask for request
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <table id="table" class="table">
+         <thead>
+        <th> Name </th>
+        <th> Category </th>
+        <th> Number of items </th>
+        <th> Price </th>
+         <th> Description </th>
+        </thead>
+
+<form action="/shopOwner/askForRequest/{{ user.id }}" method="post" enctype="multipart/form-data" >
+{% csrf_token %}
+     <tbody>
+    <tr>
+   <td>
+       <div>
+    <input type="text" name="name">
+    </div>
+        </td>
+        <td>
+    <div>
+    <input type="text" name="category">
+    </div>
+            </td>
+        <td>
+    <div>
+    <input type="text" name="numberOfItems">
+    </div>
+            </td>
+        <td>
+    <div>
+
+    <input type="text" name="price">
+    </div>
+            </td>
+        <td>
+    <div>
+
+    <input type="text" name="desc">
+    </div>
+            </td>
+        <td>
+             <div> <input type="file"  id="image" name="image"> </div>
+        </td>
+
+    </tr>
+       </tbody>
+    </table>
+    <div>
+    <input class="btn btn-success" type="submit" name="Submit">
+    </div>
+
+</form>
+    </div>
+{% endblock %}

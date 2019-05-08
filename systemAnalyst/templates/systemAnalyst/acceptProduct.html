@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+    -Accept product
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <div class="jumbotron">
+            <h3>You are one step away from accepting this product, Are you sure !?</h3>
+          </div>
+
+    <form action="/analyst/{{ product.id }}/accept" method="post">
+{% csrf_token %}
+        <div class="row">
+    <div class="col-md-2">
+    <label>Name</label>
+    </div>
+    <input type="text" value="{{ product.name}}" name="name">
+        </div>
+        <br>
+     <div class="row">
+    <div class="col-md-2">
+    <label>Category</label>
+    </div>
+    <input type="text" value="{{ product.category}}" name="category">
+        </div><br>
+     <div class="row">
+    <div class="col-md-2">
+    <label>Price</label>
+    </div>
+    <input type="text" value="{{ product.price}}" name="price">
+        </div><br>
+     <div class="row">
+    <div class="col-md-2">
+    <label>Number of items</label>
+    </div>
+    <input type="text" value="{{ product.price}}" name="numberOfItems">
+        </div><br>
+     <div class="row">
+    <div class="col-md-2">
+    <label>Description</label>
+    </div>
+    <input type="text" value="{{ product.desc}}" name="desc">
+        </div><br>
+    <div>
+    <input type="submit" value="Save" name="Save" class="btn btn-success">
+    </div>
+</form>
+    </div>
+{% endblock %}
+

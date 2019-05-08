@@ -1,0 +1,16 @@
+#image
+{
+    width: 2em;
+    height: 2em;
+
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+
+#logo
+{
+    padding-bottom: 20px;
+}

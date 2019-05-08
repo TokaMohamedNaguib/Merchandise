@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+    -Add product
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <div class="jumbotron">
+            <h3>You are one step away from adding this product to the products list, make sure you don`t have any final edits!</h3>
+          </div>
+
+    <form action="/employee/{{ product.id }}/add" method="post">
+{% csrf_token %}
+        <div class="row">
+    <div class="col-md-1">
+    <label>Name</label>
+    </div>
+    <input type="text" value="{{ product.name}}" name="name">
+        </div>
+        <br>
+     <div class="row">
+    <div class="col-md-1">
+    <label>Category</label>
+    </div>
+    <input type="text" value="{{ product.category}}" name="category">
+        </div><br>
+     <div class="row">
+    <div class="col-md-1">
+    <label>Price</label>
+    </div>
+    <input type="text" value="{{ product.price}}" name="price">
+        </div><br>
+     <div class="row">
+    <div class="col-md-1">
+    <label>Description</label>
+    </div>
+    <input type="text" value="{{ product.desc}}" name="desc">
+        </div><br>
+    <div>
+    <input type="submit" value="ADD" name="Save" class="btn btn-success">
+    </div>
+</form>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+        <h1>Welcome on board!</h1>
+<p>
+    MERCHANDISE IS A WEBSITE WHERE YOU WILL FIND ALL YOU WISH FOR!
+</p> {% if user.is_authenticated %}<p><a class="btn btn-primary btn-lg" href="{% url 'purchaserhomepage' %}" role="button">MERCHANDISE HOMEPAGE »</a></p>
+ {% else %}<p><a class="btn btn-primary btn-lg" href="{% url 'purchaserhomepage' %}" role="button">Skip to website »</a></p>{% endif %}
+      </div>
+<div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Purshaser</h2>
+          <p>If you like to shop online, then this is your place, we will make it easy for you.
+              Sign up today and enjoy many offers everyday. </p>
+          <p><a class="btn btn-primary" href="http://127.0.0.1:8000/purchaser/signUp" role="button">Sign up »</a></p>
+        </div>
+        <div class="col-md-6">
+          <h2>Shop owner</h2>
+          <p>Having your own shop has never been easir, just by one click you can manage your shop and sell products through our website. </p>
+          <p><a class="btn btn-primary" href="{% url 'Signupp' %}" role="button">Sign up »</a></p>
+       </div>
+      </div>
+
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>© 2016 Company, Inc.</p>
+      </footer>
+    </div>
+{% endblock %}
